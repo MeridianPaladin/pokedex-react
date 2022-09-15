@@ -11,7 +11,7 @@ const PokeCard = ({ data }) => {
             {data.name}
           </h2>
           {data.types.map((type, index) => (
-            <h3 className={`${colors[type.type.name].light} ${colors[type.type.name].text} rounded-full  text-sm md:text-lg lg:text-xl xl:text-3xl text-center  font-bold mb-2 w-fit px-5 uper capitalize`}>
+            <h3 key={index} className={`${colors[type.type.name].light} ${colors[type.type.name].text} rounded-full  text-sm md:text-lg lg:text-xl xl:text-3xl text-center  font-bold mb-2 w-fit px-5 uper capitalize`}>
               {type.type.name}
             </h3>
           ))}
@@ -23,6 +23,7 @@ const PokeCard = ({ data }) => {
           <img
             src={data.sprites.other.dream_world.front_default}
             className="aspect-square"
+            alt={type.type.name}
           ></img>
         </div>
       </div>
