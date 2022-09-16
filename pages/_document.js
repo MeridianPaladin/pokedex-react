@@ -23,7 +23,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           ></link>
         </Head>
-        <body className="bg-white">
+        <body className="bg-white h-full">
           <Main />
           <NextScript />
         </body>
