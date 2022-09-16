@@ -9,6 +9,9 @@ import TabAbout from "../../components/TabAbout";
 import TabStats from "../../components/TabStats";
 import TabMoves from "../../components/TabMoves";
 import TabEvolutions from "../../components/TabEvolutions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const PokemonPage = ({ pokemon, species }) => {
   const [activeTab, setActiveTab] = useState(1);
@@ -21,7 +24,17 @@ const PokemonPage = ({ pokemon, species }) => {
         } pokeball-bg flex flex-col items-center h-1/2 relative`}
       >
         <div className="flex  items-center w-full">
-          <div className="flex flex-col absolute top-8 left-8">
+          <div className="absolute top-8 left-8">
+            <Link href="/">
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                className={`${
+                  colors[pokemon.types[0].type.name].text
+                } w-6 h-6 cursor-pointer`}
+              />
+            </Link>
+          </div>
+          <div className="flex flex-col absolute top-16 left-8">
             <h1
               className={` text-3xl capitalize font-bold ${
                 colors[pokemon.types[0].type.name].text
@@ -61,14 +74,22 @@ const PokemonPage = ({ pokemon, species }) => {
       <div className="bg-white p-10 pt-14  rounded-t-3xl relative -mt-8 pb-8">
         <nav className=" border-b gray-500 pb-5 mb-5">
           <ul className="flex justify-between">
-            <li onClick={() => setActiveTab(1)}>About</li>
-            <li onClick={() => setActiveTab(2)}>Base Stats</li>
-            <li onClick={() => setActiveTab(3)}>Evolutions</li>
-            <li onClick={() => setActiveTab(4)}>Moves</li>
+            <li onClick={() => setActiveTab(1)} className="cursor-pointer">
+              About
+            </li>
+            <li onClick={() => setActiveTab(2)} className="cursor-pointer">
+              Base Stats
+            </li>
+            <li onClick={() => setActiveTab(3)} className="cursor-pointer">
+              Evolutions
+            </li>
+            <li onClick={() => setActiveTab(4)} className="cursor-pointer">
+              Moves
+            </li>
           </ul>
         </nav>
         {activeTab === 1 && <TabAbout pokemon={pokemon} species={species} />}
-        {activeTab === 2 && <TabStats stats={pokemon.stats}/>}
+        {activeTab === 2 && <TabStats stats={pokemon.stats} />}
         {activeTab === 3 && <TabEvolutions />}
         {activeTab === 4 && <TabMoves />}
       </div>
