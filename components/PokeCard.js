@@ -23,7 +23,7 @@ const PokeCard = ({ data }) => {
           <img
             src={data.sprites.other.dream_world.front_default}
             className="aspect-square"
-            alt={type.type.name}
+            alt={data.name}
           ></img>
         </div>
       </div>
