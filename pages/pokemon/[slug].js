@@ -11,7 +11,7 @@ import TabMoves from "../../components/TabMoves";
 import TabEvolutions from "../../components/TabEvolutions";
 
 const PokemonPage = ({ pokemon, species }) => {
-  const [activeTab, setActiveTab] = useState(2);
+  const [activeTab, setActiveTab] = useState(1);
 
   return (
     <Layout>
