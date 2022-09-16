@@ -1,17 +1,18 @@
+import { useState } from "react";
 import Layout from "../../components/Layout";
 import {
   getPokemonByName,
   getPokemonSpecies,
-  getPokemonGender,
 } from "../../services/pokemonService";
 import { colors } from "../../services/colorService";
-import { toFeetInches, toPounds } from "../../services/mathService";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMars, faVenus } from "@fortawesome/free-solid-svg-icons";
+import TabAbout from "../../components/TabAbout";
+import TabStats from "../../components/TabStats";
+import TabMoves from "../../components/TabMoves";
+import TabEvolutions from "../../components/TabEvolutions";
 
 const PokemonPage = ({ pokemon, species }) => {
-  const pokemonSpecies = species.genera.filter((a) => a.language.name === "en");
-  const { female, male, genderless } = getPokemonGender(species.gender_rate);
+  const [activeTab, setActiveTab] = useState(2);
+
   return (
     <Layout>
       <div
@@ -60,91 +61,16 @@ const PokemonPage = ({ pokemon, species }) => {
       <div className="bg-white p-10 pt-14  rounded-t-3xl relative -mt-8 pb-8">
         <nav className=" border-b gray-500 pb-5 mb-5">
           <ul className="flex justify-between">
-            <li>About</li>
-            <li>Base Stats</li>
-            <li>Evolutions</li>
-            <li>Moves</li>
+            <li onClick={() => setActiveTab(1)}>About</li>
+            <li onClick={() => setActiveTab(2)}>Base Stats</li>
+            <li onClick={() => setActiveTab(3)}>Evolutions</li>
+            <li onClick={() => setActiveTab(4)}>Moves</li>
           </ul>
         </nav>
-        <table className="w-full mb-4">
-          <tbody>
-            <tr>
-              <td width="30%" className="text-slate-500 pr-2">
-                Species
-              </td>
-              <td>{pokemonSpecies[0].genus}</td>
-            </tr>
-            <tr>
-              <td className="text-slate-500 pr-2">Height</td>
-              <td>
-                {toFeetInches(pokemon.height)} ({pokemon.height * 10} cm)
-              </td>
-            </tr>
-            <tr>
-              <td className="text-slate-500 pr-2">Weight</td>
-              <td>
-                {toPounds(pokemon.weight)} lbs ({pokemon.weight / 10} kg)
-              </td>
-            </tr>
-            <tr>
-              <td className="text-slate-500 pr-2">Abilities</td>
-              <td>
-                {pokemon.abilities.map((item, index) => (
-                  <span key={index} className="capitalize">
-                    {item.ability.name}
-                    {index < pokemon.abilities.length - 1 ? ", " : ""}
-                  </span>
-                ))}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <table className="w-full">
-          <tbody>
-            <tr>
-              <td colSpan={2}>
-                <b>Breeding</b>
-              </td>
-            </tr>
-            <tr>
-              <td width="30%" className="text-slate-500 pr-2">
-                Gender
-              </td>
-              {genderless ? (
-                <td colSpan={2}>Genderless</td>
-              ) : (
-                <>
-                  <td>
-                    <span className="text-blue-600 mr-2">
-                      <FontAwesomeIcon icon={faMars} />
-                    </span>
-                    {male}%
-                  </td>
-                  <td>
-                    <span className="text-rose-500 mr-2">
-                      <FontAwesomeIcon icon={faVenus} />
-                    </span>
-                    {female}%
-                  </td>
-                </>
-              )}
-            </tr>
-            <tr>
-              <td className="text-slate-500 pr-2">Egg Groups</td>
-              <td colSpan={2} className="capitalize">
-                {species.egg_groups[0].name}
-              </td>
-            </tr>
-            {species.egg_groups.length > 1 && (
-              <tr>
-                <td className="text-slate-500 pr-2">Egg Cycle</td>
-                <td colSpan={2} className="capitalize">
-                  {species.egg_groups[1].name}
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        {activeTab === 1 && <TabAbout pokemon={pokemon} species={species} />}
+        {activeTab === 2 && <TabStats stats={pokemon.stats}/>}
+        {activeTab === 3 && <TabEvolutions />}
+        {activeTab === 4 && <TabMoves />}
       </div>
     </Layout>
   );
