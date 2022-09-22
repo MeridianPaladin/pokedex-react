@@ -19,12 +19,32 @@ export const getPokemonByName = async (name) => {
 };
 
 export const getAllPokemon = async () => {
-  const list = await getPokemonList();
-  const pokemonsData = list.results.map(async (item) => {
-    return await getPokemonByUrl(item.url);
+  const query = `
+  query MyQuery {
+    pokemon_v2_pokemon(limit: 151, offset: 0) {
+      id
+      name
+      pokemon_v2_pokemontypes {
+        id
+        pokemon_v2_type {
+          name
+        }
+      }
+      pokemon_v2_pokemonsprites {
+        sprites
+      }
+    }
+  }
+  `;
+  const res = await fetch("https://beta.pokeapi.co/graphql/v1beta", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query,
+    }),
   });
-  const results = await Promise.all(pokemonsData);
-  return results;
+  const results = await res.json(res);
+  return results.data.pokemon_v2_pokemon;
 };
 
 export const getPokemonSpecies = async (url) => {
