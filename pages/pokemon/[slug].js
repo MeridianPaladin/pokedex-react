@@ -23,10 +23,10 @@ const PokemonPage = ({ pokemon, species, evolutions }) => {
       <div
         className={`${
           colors[pokemon.types[0].type.name].dark
-        } pokeball-bg flex flex-col items-center h-1/2 relative`}
+        } pokeball-bg flex flex-col items-center relative`}
       >
-        <div className="flex  items-center w-full">
-          <div className="absolute top-8 left-8">
+        <div className="flex  items-center w-full p-4">
+          <div className="mr-4">
             <Link href="/">
               <FontAwesomeIcon
                 icon={faArrowLeft}
@@ -36,9 +36,9 @@ const PokemonPage = ({ pokemon, species, evolutions }) => {
               />
             </Link>
           </div>
-          <div className="flex flex-col absolute top-16 left-8">
+          <div className="flex flex-col relative">
             <h1
-              className={` text-3xl capitalize font-bold ${
+              className={`leading-none text-3xl capitalize font-bold ${
                 colors[pokemon.types[0].type.name].text
               } mb-2`}
             >
@@ -50,7 +50,7 @@ const PokemonPage = ({ pokemon, species, evolutions }) => {
                   key={index}
                   className={`${colors[type.type.name].light} ${
                     colors[type.type.name].text
-                  } rounded-full  text-sm md:text-lg lg:text-xl xl:text-3xl text-center  font-bold mb-2 w-fit px-5 uper capitalize`}
+                  } rounded-full  text-xs md:text-lg lg:text-xl xl:text-3xl text-center  font-bold mb-2 w-fit md:px-5 px-3 uper capitalize`}
                 >
                   {type.type.name}
                 </h3>
@@ -65,7 +65,7 @@ const PokemonPage = ({ pokemon, species, evolutions }) => {
             #{pokemon.id}
           </div>
         </div>
-        <div className="z-10 aspect-square absolute bottom-0 w-3/5 max-h-[80%]">
+        <div className="z-10 aspect-square  bottom-0 w-2/5 sm:w-3/5 md:max-h-60 ">
           <img
             className="w-full h-full mx-auto"
             src={pokemon.sprites.other.dream_world.front_default}
