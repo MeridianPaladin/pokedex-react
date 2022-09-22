@@ -4,6 +4,7 @@ import {
   getPokemonByName,
   getPokemonSpecies,
   getPokemonList,
+  getPokemonEvolution,
 } from "../../services/pokemonService";
 import { colors } from "../../services/colorService";
 import TabAbout from "../../components/TabAbout";
@@ -14,8 +15,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-const PokemonPage = ({ pokemon, species }) => {
-  const [activeTab, setActiveTab] = useState(1);
+const PokemonPage = ({ pokemon, species, evolutions }) => {
+  const [activeTab, setActiveTab] = useState(3);
 
   return (
     <Layout>
@@ -73,26 +74,37 @@ const PokemonPage = ({ pokemon, species }) => {
         </div>
       </div>
       <div className="bg-white p-10 pt-14  rounded-t-3xl relative -mt-8 pb-8">
-        <nav className=" border-b gray-500 pb-5 mb-5">
-          <ul className="flex justify-between">
-            <li onClick={() => setActiveTab(1)} className="cursor-pointer">
+        <nav className=" border-b border-gray-300  mb-5">
+          <ul className="flex justify-between items-stretch">
+            <li
+              onClick={() => setActiveTab(1)}
+              className={`border-b ${
+                activeTab === 1 && "border-gray-500 font-bold"
+              } cursor-pointer  w-1/3 text-center p-3  block`}
+            >
               About
             </li>
-            <li onClick={() => setActiveTab(2)} className="cursor-pointer">
+            <li
+              onClick={() => setActiveTab(2)}
+              className={`border-b ${
+                activeTab === 2 && "border-gray-500 font-bold"
+              } cursor-pointer  w-1/3 text-center p-3  block`}
+            >
               Base Stats
             </li>
-            <li onClick={() => setActiveTab(3)} className="cursor-pointer">
+            <li
+              onClick={() => setActiveTab(3)}
+              className={`border-b ${
+                activeTab === 3 && "border-gray-500 font-bold"
+              } cursor-pointer  w-1/3 text-center p-3  block`}
+            >
               Evolutions
-            </li>
-            <li onClick={() => setActiveTab(4)} className="cursor-pointer">
-              Moves
             </li>
           </ul>
         </nav>
         {activeTab === 1 && <TabAbout pokemon={pokemon} species={species} />}
         {activeTab === 2 && <TabStats stats={pokemon.stats} />}
-        {activeTab === 3 && <TabEvolutions />}
-        {activeTab === 4 && <TabMoves />}
+        {activeTab === 3 && <TabEvolutions evolutions={evolutions} />}
       </div>
     </Layout>
   );
@@ -114,11 +126,13 @@ export async function getStaticProps(context) {
   const { slug } = context.params;
   const pokemon = await getPokemonByName(slug);
   const species = await getPokemonSpecies(pokemon.species.url);
+  const evolutions = await getPokemonEvolution(species.evolution_chain.url);
 
   return {
     props: {
       pokemon,
       species,
+      evolutions,
     },
   };
 }

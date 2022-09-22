@@ -59,3 +59,27 @@ export const getPokemonGender = (rate) => {
   let male = 100 - female;
   return { female, male, genderless };
 };
+
+export const getPokemonEvolution = async (url) => {
+  const response = await fetch(url);
+  const data = await response.json(response);
+
+  let chain = data.chain;
+  let evolution_chain = [];
+
+  while (chain.evolves_to.length != 0) {
+    const evolution = {
+      name: chain.species.name,
+      id: chain.species.url.split("/").slice(-2)[0],
+      evolve_to: {
+        name: chain.evolves_to[0].species.name,
+        id: chain.evolves_to[0].species.url.split("/").slice(-2)[0],
+      },
+      level: chain.evolves_to[0].evolution_details[0].min_level,
+    };
+    evolution_chain = [...evolution_chain, evolution];
+    chain = chain.evolves_to[0];
+  }
+
+  return evolution_chain;
+};
