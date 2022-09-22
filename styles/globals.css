@@ -44,5 +44,6 @@ a {
   background-position: 120% bottom;
   background-size: 60%;
   background-repeat: no-repeat;
+  background-blend-mode: overlay;
 
 }
