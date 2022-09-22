@@ -6,7 +6,11 @@ export const toFeetInches = (value) => {
   return result;
 };
 export const toPounds = (value) => {
-    let calc = value/4.53
-    const pounds = calc.toFixed(1)
-    return pounds
-}
+  let calc = value / 4.53;
+  const pounds = calc.toFixed(1);
+  return pounds;
+};
+export const getWidthBar = (max, stat) => {
+  const width = (100 * stat) / max;
+  return width
+};
