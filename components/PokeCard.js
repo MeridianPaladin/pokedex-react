@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const PokeCard = ({ data }) => {
   return (
-    <Link href={`/pokemon/${data.id}`}>
+    <Link href={`/pokemon/${data.name}`}>
       <div
         className={`${
           colors[data.types[0].type.name].dark
