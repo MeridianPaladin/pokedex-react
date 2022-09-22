@@ -6,12 +6,12 @@ const TabEvolutions = ({ evolutions }) => {
     <>
       {evolutions.map((evolution, index) => (
         <div
-          className="flex w-full justify-between mb-8 items-center"
+          className="flex w-full justify-between mb-12 items-center"
           key={index}
         >
           <Link href={`/pokemon/${evolution.name}`}>
-            <div className="text-center  cursor-pointer">
-              <div className=" w-16 relative">
+            <div className="text-center  cursor-pointer w-1/3">
+              <div className="mx-auto  w-16 relative">
                 <img
                   className="aspect-square mx-auto "
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${evolution.id}.svg`}
@@ -20,10 +20,10 @@ const TabEvolutions = ({ evolutions }) => {
               <div className="capitalize font-bold">{evolution.name}</div>
             </div>
           </Link>
-          <div>Lvl. {evolution.level}</div>
+          <div className="w-1/3 text-center">Lvl. {evolution.level}</div>
           <Link href={`/pokemon/${evolution.evolve_to.name}`}>
-            <div className="text-center cursor-pointer">
-              <div className=" w-16 relative">
+            <div className="text-center cursor-pointer w-1/3">
+              <div className=" mx-auto w-16 relative">
                 <img
                   className="aspect-square mx-auto "
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${evolution.evolve_to.id}.svg`}

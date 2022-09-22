@@ -16,7 +16,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 const PokemonPage = ({ pokemon, species, evolutions }) => {
-  const [activeTab, setActiveTab] = useState(3);
+  const [activeTab, setActiveTab] = useState(1);
 
   return (
     <Layout>
