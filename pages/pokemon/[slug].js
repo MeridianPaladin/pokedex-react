@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import {
   getPokemonByName,
   getPokemonSpecies,
+  getPokemonList,
 } from "../../services/pokemonService";
 import { colors } from "../../services/colorService";
 import TabAbout from "../../components/TabAbout";
@@ -97,7 +98,19 @@ const PokemonPage = ({ pokemon, species }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+  const data = await getPokemonList();
+  const paths = data.results.map((item) => ({
+    params: { slug: item.name },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps(context) {
   const { slug } = context.params;
   const pokemon = await getPokemonByName(slug);
   const species = await getPokemonSpecies(pokemon.species.url);
