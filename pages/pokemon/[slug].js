@@ -38,7 +38,7 @@ const PokemonPage = ({ pokemon, species, evolutions }) => {
           </div>
           <div className="flex flex-col relative">
             <h1
-              className={`leading-none text-3xl capitalize font-bold ${
+              className={`leading-none capitalize font-bold text-xl md:text-2xl lg:text-3xl xl:text-6xl ${
                 colors[pokemon.types[0].type.name].text
               } mb-2`}
             >
