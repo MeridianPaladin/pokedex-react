@@ -9,9 +9,14 @@ const Home = ({ pokemons }) => {
   return (
     <Layout>
       <div className="p-4">
-        <h1 className="mb-8 font-bold resize-text-lg">
-          POKEDEX by MeridianPaladin
-        </h1>
+        <div className="flex items-center justify-between">
+          <h1 className="mb-8 font-bold resize-text-lg">
+            POKEDEX by MeridianPaladin
+          </h1>
+          <h1 className="text-xl font-bold">
+            v1.0
+          </h1>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 ">
           {pokemons.map((item, index) => (
             <PokeCard data={item} key={index} />
