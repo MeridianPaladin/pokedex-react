@@ -7,7 +7,7 @@ const PokeCard = ({ data }) => {
 
   return (
     <Link href={`/pokemon/${data.name}`}>
-      <div
+      <div id={data.name}
         className={`${
           colors[data.pokemon_v2_pokemontypes[0].pokemon_v2_type.name].dark
         } aspect-5/3 rounded-2xl cursor-pointer pokeball-bg`}

@@ -27,7 +27,7 @@ const PokemonPage = ({ pokemon, species, evolutions }) => {
       >
         <div className="flex  items-center w-full p-4">
           <div className="mr-4">
-            <Link href="/">
+            <Link href={`/#${pokemon.name}`}>
               <FontAwesomeIcon
                 icon={faArrowLeft}
                 className={`${
