@@ -3,6 +3,8 @@ import Layout from "../components/Layout";
 import PokeCard from "../components/PokeCard";
 import { getAllPokemon } from "../services/pokemonService";
 import PokemonSearch from "../components/PokemonSearch";
+import NavegationBar from "../components/NavegationBar";
+import Footer from "../components/Footer";
 
 const Home = ({ pokemons }) => {
   const [pokemonData, setPokemonData] = useState([]);
@@ -19,18 +21,14 @@ const Home = ({ pokemons }) => {
   
   return (
     <Layout>
-      <div className="p-4">
-        <div className="flex items-center justify-between">
-          <h1 className="mb-8 font-bold resize-text-lg">
-            POKEDEX by MeridianPaladin
-          </h1>
-          <h1 className="text-xl font-bold">v1.1</h1>
-        </div>
+
+      <div className="p-4 dark:bg-dark1 pb-0 min-h-full">
+        <NavegationBar/>
         <PokemonSearch
           data={pokemons}
           onDataChange={(data) => showResults(data)}
         />
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 ">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 pb-12 ">
           {pokemonData.map((item, index) => (
             <PokeCard data={item} key={index} />
           ))}
