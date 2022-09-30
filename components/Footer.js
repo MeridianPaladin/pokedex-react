@@ -9,7 +9,7 @@ const Footer = () => {
         </p>
       </div>
       <div className="flex items-center">
-        <a href="https://github.com/MeridianPaladin/pokedex-react.git" target="_blank">
+        <a href="https://github.com/MeridianPaladin/pokedex-react.git" target="_blank" rel="noreferrer">
           <img src="/img/github-logo.png" className="h-5 w-5 mr-2" />
         </a>
 
