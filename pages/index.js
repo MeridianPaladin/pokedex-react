@@ -2,10 +2,21 @@ import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import PokeCard from "../components/PokeCard";
 import { getAllPokemon } from "../services/pokemonService";
+import PokemonSearch from "../components/PokemonSearch";
 
 const Home = ({ pokemons }) => {
-  if (!pokemons) return <div>No pokemons found</div>;
+  const [pokemonData, setPokemonData] = useState([]);
 
+  const showResults = (data) => {
+    setPokemonData(data);
+  };
+
+  useEffect(() => {
+    setPokemonData(pokemons);
+  }, [pokemons]);
+
+  if (!pokemons) return <div>No pokemons found</div>;
+  
   return (
     <Layout>
       <div className="p-4">
@@ -13,12 +24,14 @@ const Home = ({ pokemons }) => {
           <h1 className="mb-8 font-bold resize-text-lg">
             POKEDEX by MeridianPaladin
           </h1>
-          <h1 className="text-xl font-bold">
-            v1.0
-          </h1>
+          <h1 className="text-xl font-bold">v1.0</h1>
         </div>
+        <PokemonSearch
+          data={pokemons}
+          onDataChange={(data) => showResults(data)}
+        />
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 ">
-          {pokemons.map((item, index) => (
+          {pokemonData.map((item, index) => (
             <PokeCard data={item} key={index} />
           ))}
         </div>
