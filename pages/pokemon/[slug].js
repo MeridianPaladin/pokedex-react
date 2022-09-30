@@ -92,19 +92,19 @@ const PokemonPage = ({ pokemon, species, evolutions }) => {
             >
               Base Stats
             </li>
-            <li
+            { evolutions.length > 0 && (<li
               onClick={() => setActiveTab(3)}
               className={`border-b ${
                 activeTab === 3 && "border-gray-500 font-bold"
               } cursor-pointer  w-1/3 text-center p-3  block`}
             >
               Evolutions
-            </li>
+            </li>)}
           </ul>
         </nav>
         {activeTab === 1 && <TabAbout pokemon={pokemon} species={species} />}
         {activeTab === 2 && <TabStats stats={pokemon.stats} />}
-        {activeTab === 3 && <TabEvolutions evolutions={evolutions} />}
+        {activeTab === 3 && evolutions.length > 0 && <TabEvolutions evolutions={evolutions} />}
       </div>
     </Layout>
   );
