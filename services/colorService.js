@@ -125,4 +125,7 @@ export const colors = {
     textLight: "text-water-light",
     bgImg:"bg-img-water"
   },
+  white: {
+    text: "text-white"
+  }
 };

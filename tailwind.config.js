@@ -66,6 +66,10 @@ module.exports = {
         "steel-light": "#42bd94",
         water: "#1552e2",
         "water-light": "#86a8fc",
+        dark1: "#2a314f",
+        dark2: "#373f65",
+        dark3: "#4b568b",
+        dark4: "#0e111c"
       },
       fontFamily: {
         sans: ["Nunito", ...defaultTheme.fontFamily.sans],
