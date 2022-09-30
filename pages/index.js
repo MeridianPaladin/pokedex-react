@@ -24,7 +24,7 @@ const Home = ({ pokemons }) => {
           <h1 className="mb-8 font-bold resize-text-lg">
             POKEDEX by MeridianPaladin
           </h1>
-          <h1 className="text-xl font-bold">v1.0</h1>
+          <h1 className="text-xl font-bold">v1.1</h1>
         </div>
         <PokemonSearch
           data={pokemons}
