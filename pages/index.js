@@ -4,10 +4,10 @@ import PokeCard from "../components/PokeCard";
 import { getAllPokemon } from "../services/pokemonService";
 import PokemonSearch from "../components/PokemonSearch";
 import NavegationBar from "../components/NavegationBar";
-import Footer from "../components/Footer";
 
 const Home = ({ pokemons }) => {
   const [pokemonData, setPokemonData] = useState([]);
+  const [keyword, setKeyword] = useState("");
 
   const showResults = (data) => {
     setPokemonData(data);
@@ -18,18 +18,22 @@ const Home = ({ pokemons }) => {
   }, [pokemons]);
 
   if (!pokemons) return <div>No pokemons found</div>;
-  
+
   return (
     <Layout>
-
       <div className="p-4 dark:bg-dark1 pb-0 min-h-full">
-        <NavegationBar/>
+        <NavegationBar />
         <PokemonSearch
-          data={pokemons}
-          onDataChange={(data) => showResults(data)}
+          keyword={keyword}
+          onDataChange={(value) => setKeyword(value)}
         />
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 pb-12 ">
-          {pokemonData.map((item, index) => (
+          {(keyword === ""
+            ? pokemons
+            : pokemons.filter((a) =>
+                a.name.toLowerCase().includes(keyword.toLowerCase())
+              )
+          ).map((item, index) => (
             <PokeCard data={item} key={index} />
           ))}
         </div>
