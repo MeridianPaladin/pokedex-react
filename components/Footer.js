@@ -13,7 +13,7 @@ const Footer = () => {
           <img src="/img/github-logo.png" className="h-5 w-5 mr-2" />
         </a>
 
-        <p className="text-yellow-500 font-bold">v1.1</p>
+        <p className="text-yellow-500 font-bold">v{process.env.VERSION}</p>
       </div>
     </div>
   );
